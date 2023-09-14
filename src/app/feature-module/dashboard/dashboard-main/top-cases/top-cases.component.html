@@ -1,0 +1,155 @@
+<!-- begin::Header-->
+<div class="card-header border-0 pt-5">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-bolder text-dark">Top Cases</span>
+    <span class="text-muted mt-1 fs-7">Top most important cases</span>
+  </h3>
+  <div class="card-toolbar">
+    <!-- begin::Menu-->
+    <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+      data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
+      <i class="material-icons drop-dots">keyboard_control</i>
+    </button>
+
+    <!-- end::Menu-->
+  </div>
+</div>
+<!-- end::Header-->
+<!-- begin::Body-->
+<div class="card-body pt-5">
+  <!-- begin::Item-->
+  <div class="d-flex align-items-sm-center mb-7">
+    <!-- begin::Symbol-->
+    <div class="symbol symbol-50px me-5">
+      <span class="symbol-label">
+        <img src="./assets/media/svg/brand-logos/plurk.svg" class="h-50 align-self-center" alt="companyLogo" />
+      </span>
+    </div>
+    <!-- end::Symbol-->
+    <!-- begin::Section-->
+    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+      <div class="flex-grow-1 me-2">
+        <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+         Pfizer
+        </a>
+        <span class="text-muted fw-bold d-block fs-7">Medical, Industrial</span>
+      </div>
+      <span class="badge badge-light fw-bolder my-2">+82,000$</span>
+    </div>
+    <!-- end::Section-->
+  </div>
+  <!-- end::Item-->
+  <!-- begin::Item-->
+  <div class="d-flex align-items-sm-center mb-7">
+    <!-- begin::Symbol-->
+    <div class="symbol symbol-50px me-5">
+      <span class="symbol-label">
+        <img src="./assets/media/svg/brand-logos/telegram.svg" class="h-50 align-self-center" alt="" />
+      </span>
+    </div>
+    <!-- end::Symbol-->
+    <!-- begin::Section-->
+    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+      <div class="flex-grow-1 me-2">
+        <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+          Tesla
+        </a>
+        <span class="text-muted fw-bold d-block fs-7">Industry</span>
+      </div>
+      <span class="badge badge-light fw-bolder my-2">+28,000$</span>
+    </div>
+    <!-- end::Section-->
+  </div>
+  <!-- end::Item-->
+  <!-- begin::Item-->
+  <div class="d-flex align-items-sm-center mb-7">
+    <!-- begin::Symbol-->
+    <div class="symbol symbol-50px me-5">
+      <span class="symbol-label">
+        <img src="./assets/media/svg/brand-logos/vimeo.svg" class="h-50 align-self-center" alt="" />
+      </span>
+    </div>
+    <!-- end::Symbol-->
+    <!-- begin::Section-->
+    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+      <div class="flex-grow-1 me-2">
+        <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+         Windows
+        </a>
+        <span class="text-muted fw-bold d-block fs-7">Tech </span>
+      </div>
+      <span class="badge badge-light fw-bolder my-2">+4400$</span>
+    </div>
+    <!-- end::Section-->
+  </div>
+  <!-- end::Item-->
+  <!-- begin::Item-->
+  <div class="d-flex align-items-sm-center mb-7">
+    <!-- begin::Symbol-->
+    <div class="symbol symbol-50px me-5">
+      <span class="symbol-label">
+        <img src="./assets/media/svg/brand-logos/bebo.svg" class="h-50 align-self-center" alt="" />
+      </span>
+    </div>
+    <!-- end::Symbol-->
+    <!-- begin::Section-->
+    <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+      <div class="flex-grow-1 me-2">
+        <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+         BMW
+        </a>
+        <span class="text-muted fw-bold d-block fs-7">Mechancial, Industry</span>
+      </div>
+      <span class="badge badge-light fw-bolder my-2">+4500$</span>
+    </div>
+    <!-- end::Section-->
+  </div>
+  <!-- end::Item-->
+
+  <ng-container *ngIf="items > 4">
+    <div class="d-flex align-items-sm-center mb-7">
+      <!-- begin::Symbol-->
+      <div class="symbol symbol-50px me-5">
+        <span class="symbol-label">
+          <img src="./assets/media/svg/brand-logos/kickstarter.svg" class="h-50 align-self-center" alt="" />
+        </span>
+      </div>
+      <!-- end::Symbol-->
+      <!-- begin::Section-->
+      <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+        <div class="flex-grow-1 me-2">
+          <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+           OXY
+          </a>
+          <span class="text-muted fw-bold d-block fs-7">Petrol, Industry</span>
+        </div>
+        <span class="badge badge-light fw-bolder my-2">+10,000$</span>
+      </div>
+      <!-- end::Section-->
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="items > 5">
+    <div class="d-flex align-items-sm-center">
+      <!-- begin::Symbol-->
+      <div class="symbol symbol-50px me-5">
+        <span class="symbol-label">
+          <img width="40" src="./assets/media/svg/brand-logos/fox-hub.svg" class="h-50 align-self-center" alt="" />
+        </span>
+      </div>
+      <!-- end::Symbol-->
+      <!-- begin::Section-->
+      <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+        <div class="flex-grow-1 me-2">
+          <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+           Nestle
+          </a>
+          <span class="text-muted fw-bold d-block fs-7">Industry, Health</span>
+        </div>
+        <span class="badge badge-light fw-bolder my-2">+4500$</span>
+      </div>
+      <!-- end::Section-->
+    </div>
+  </ng-container>
+</div>
+<!-- end::Body-->

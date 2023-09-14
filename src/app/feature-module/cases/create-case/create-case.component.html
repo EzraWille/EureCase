@@ -1,0 +1,84 @@
+<div class="dialog-header py-2 px-10">
+  <div class="d-flex flex-column">
+    <h2 class="fs-5 fw-bold">{{DialogTitle}}</h2>
+
+  </div>
+  <button mat-icon-button mat-dialog-close aria-label="Close" style="box-shadow: none; line-height: 5px;">
+    <i class="bi bi-x"></i>
+  </button>
+</div>
+
+  <div class="wrap">
+    <ng-container *ngIf="loading">
+      <span class="indicator-progress" [style.display]="'block'">
+
+        <div class="full-bg">
+          <span
+          class=" text-gold spinner-border spinner-border-md align-middle ms-2"
+        ></span>
+        </div>
+      </span>
+    </ng-container>
+    <mat-stepper  #stepper (selectionChange)="onStepChange($event)" *ngIf="!loading" [linear]="true">
+      <ng-template matStepperIcon="edit">
+        <mat-icon class="custom-check-icon">check</mat-icon>
+      </ng-template>
+      <!-- CasInfo -->
+      <mat-step >
+         <div class="position-relative w-100">
+          <ng-template matStepLabel>Case Info</ng-template>
+          <app-case-info #caseInfo [caseById]="this.currentCase" [newCaseUUID]="this.newCaseUid"></app-case-info>
+         </div>
+      </mat-step>
+      <!-- Requirements -->
+      <mat-step  [optional]="isOptional" >
+          <ng-template matStepLabel>Requirements</ng-template>
+          <app-case-requirements [caseById]="this.currentCase" [newCaseUUID]="this.newCaseUid"></app-case-requirements>
+
+      </mat-step>
+      <!-- Participants -->
+      <mat-step  [optional]="isOptional">
+        <ng-template matStepLabel>Participants</ng-template>
+        <app-choose-participants [caseById]="this.currentCase" [newCaseUUID]="this.newCaseUid"></app-choose-participants>
+      </mat-step>
+      <!-- payment plan -->
+      <mat-step  [optional]="isOptional">
+        <ng-template matStepLabel>Payment</ng-template>
+        <ng-container  >
+          <form >
+
+            <app-payment #paymentComp [caseById]="this.currentCase" [newCaseUUID]="this.newCaseUid" ></app-payment>
+          </form>
+        </ng-container>
+
+      </mat-step>
+      <!-- Punlish -->
+      <mat-step  [optional]="isOptional">
+        <form >
+          <ng-template matStepLabel>Publish</ng-template>
+          <ng-container *ngIf="isPublishStepActivated">
+            <app-publish  [caseById]="this.currentCase" [newCaseUUID]="this.newCaseUid"></app-publish>
+            <div class="d-flex justify-content-between">
+              <div class="action-btns d-flex gap-2" style="margin-left: auto; " style="order: 1;">
+
+              </div>
+                <button mat-button matStepperPrevious class="secondary-btn" >Back</button>
+              </div>
+
+          </ng-container>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+
+
+<!--
+ <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step> -->
+

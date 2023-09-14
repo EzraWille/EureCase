@@ -1,0 +1,57 @@
+.bg-gradient-primary {
+  background-image: linear-gradient(210deg, #f9f9f9 0%, #005aff 100%)
+}
+
+.bg-cover {
+  background-size: cover;
+}
+.spinner{
+  width: 100%;
+  height: 100%;
+}
+.spin-comp{
+
+  margin: auto;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+.cards-platform{
+padding: 0 12px;
+}
+.border-btn{
+  background: none;
+  padding: 5px 20px;
+  border: 1px solid #e3b52b;
+  border-radius: 50px;
+  width: fit-content;
+  a{
+    text-decoration: none;
+
+  }
+}
+
+
+.create-offer-card{
+
+ .card {
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/webartpath.appspot.com/o/eurekxay-videos%2Fbeth-jnr-NtfFqT8JBI0-unsplash.webp?alt=media&token=ce2eb2b6-fc07-420c-8f51-457c801780da');
+    @media (max-width:1200px) {
+        background-position: center;
+       height: 250px;
+      }
+ }
+
+}
+.services {
+  &__area {
+    position: absolute;
+    top: 210px;
+    left: 0;
+    right: 0;
+    width: 78%;
+    margin: 0 auto;
+  }
+
+}

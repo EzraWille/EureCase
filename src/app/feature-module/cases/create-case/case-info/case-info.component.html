@@ -1,0 +1,279 @@
+<div class="case-info-container">
+  <div class="basic-info-form pt-10">
+    <form [formGroup]="formBasics" class="row g-3 d-flex pb-100">
+      <div class="row">
+        <!-- case name -->
+        <div class="col-md-6 grid-item fv-row mt-10">
+          <label class="fs-6 text-uppercase fw-medium text-primary-eu">Case Name</label>
+          <input
+            type="text"
+            formControlName="caseName"
+            class="form-control mb-2 fs-6"
+            name="caseName"
+            placeholder="Enter Case Name"
+            value="caseName"
+          />
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              caseName?.hasError('required') && caseName?.touched
+            "
+          >
+            Case Name is required
+          </div>
+        </div>
+        <!-- case type -->
+        <div class="col-md-6 grid-item fv-row mt-10">
+          <label class="text-muted fs-6 fw-medium">Case Type</label>
+          <mat-select
+          class="mat-select-form-field fs-6 fw-bold"
+          formControlName="caseType"
+          name="caseType"
+          data-control="select2"
+          data-hide-search="true"
+          data-placeholder="case Type"
+        >
+          <mat-option value="" disabled selected class="fs-6"
+            >Select a Case Type</mat-option
+          >
+          <mat-option value="ILLUSTRATIVE"   >Illustrative</mat-option>
+          <mat-option value="DESCRIPTIVE" >Descriptive</mat-option>
+          <mat-option value="CUMULATIVE" >Cumulative</mat-option>
+          <mat-option value="CRITICAL_INSTANCE" >
+            Critical Instance</mat-option>
+        </mat-select>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              caseType?.hasError('required') && caseType?.touched
+            "
+          >
+            Case Type is required
+          </div>
+        </div>
+        <!-- case nickname -->
+        <div class="col-md-6 grid-item fv-row mt-10">
+          <label class="text-muted fs-6 fw-medium"
+            >Case Nickname</label
+          >
+          <input
+            type="text"
+            formControlName="caseNickname"
+            class="form-control mb-2 fs-6"
+            name="caseNickname"
+            placeholder="Ente Case Nickname"
+            value="caseNickname"
+          />
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              caseNickname?.hasError('required') &&
+              caseNickname?.touched
+            "
+          >
+            Case Nickname is required
+          </div>
+        </div>
+        <!-- case budget -->
+        <div class="col-md-6 grid-item fv-row mt-10">
+          <label class="text-muted fs-6 fw-medium">Case Budget</label>
+          <div class="d-flex position-relative budget">
+            <span class="fs-5 fw-bolder  text-gold badge dollar" >$</span>
+            <input
+              type="text"
+              formControlName="caseBudget"
+              class="form-control mb-2 fs-6 "
+              name="caseBudget"
+              placeholder="Enter Case Budget"
+              mask="separator.2"
+              thousandSeparator=","
+              (focus)="warnUser(publishDate, 'caseBudget')"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              caseBudget?.hasError('required') && caseBudget?.touched
+            "
+          >
+            Case Budget is required
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="caseBudget?.hasError('min') && caseBudget?.touched"
+          >
+            Case Budget must be a positive number
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- case publish data -->
+        <div class="col-md-4 grid-item fv-row mt-10">
+          <label
+            class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+          >
+            <span class="text-muted fs-6 fw-medium pl-5 "
+              >Publish Date</span
+            >
+          </label>
+          <div class="d-flex flex-column mr-auto">
+            <input
+              type="date"
+              formControlName="publishDate"
+              class="form-control mb-2 fs-6"
+              name="publishDate"
+              (focus)="warnUser(publishDate, 'caseBudget')"
+            />
+            <div
+              class="fv-plugins-message-container invalid-feedback"
+              *ngIf="
+                publishDate?.hasError('required') &&
+                publishDate?.touched
+              "
+            >
+              Publish Date is required
+            </div>
+          </div>
+        </div>
+        <!-- case expiry date -->
+        <div class="col-md-4 grid-item fv-row mt-10">
+          <label
+            class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+          >
+            <span class="text-muted fs-6 fw-medium pl-5"
+              >Expiry Date</span
+            >
+          </label>
+          <div class="d-flex flex-column mr-auto">
+            <input
+            type="date"
+            formControlName="expiryDate"
+            class="form-control mb-2 fs-6"
+            name="publishDate"
+          />
+
+            <div
+              class="fv-plugins-message-container invalid-feedback"
+              *ngIf="
+                expiryDate?.hasError('required') &&
+                expiryDate?.touched
+              "
+            >
+              Expiry Date is required
+            </div>
+            <div
+              class="fv-plugins-message-container invalid-feedback"
+              *ngIf="formBasics!.hasError('issueDateGreater')"
+            >
+            Expiry Date cannot be before Publish Date
+            </div>
+          </div>
+        </div>
+        <!-- duration -->
+        <div class="col-md-4 grid-item fv-row mt-10">
+          <label
+            class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+          >
+            <span class="text-muted fs-6 fw-medium pl-5"
+              >Research Duration</span
+            >
+          </label>
+          <div class="d-flex flex-column mr-auto">
+            <div class="position-relative">
+              <input
+                type="number"
+                formControlName="researchDuration"
+                class="form-control mb-2 fs-6"
+                name="researchDuration"
+                placeholder="Duration"
+                (focus)="warnUser(publishDate, 'caseBudget')"
+              />
+              <select
+                formControlName="durationType"
+                data-control="select2"
+                data-hide-search="true"
+                class="mat-select-form-field d-type"
+                (focus)="warnUser(publishDate, 'caseBudget')"
+              >
+
+                <option value="DAY" class="fs-6">Day</option>
+                <option value="MONTH" class="fs-6">Month</option>
+                <option value="YEAR" class="fs-6">Year</option>
+              </select>
+            </div>
+            <div
+              class="fv-plugins-message-container invalid-feedback"
+              *ngIf="
+                researchDuration?.hasError('required') &&
+                researchDuration?.touched
+              "
+            >
+              Research Duration is required
+            </div>
+            <div
+              class="fv-plugins-message-container invalid-feedback"
+              *ngIf="
+                durationType?.hasError('required') &&
+                durationType?.touched
+              "
+            >
+              Duration Type is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Case Abstract -->
+      <div class="col-12 fv-row mt-10 d-flex flex-column " style="padding-right: 26px;">
+        <label class="text-muted fs-6 fw-medium">Case Abstract</label>
+        <!-- <textarea
+
+          class="form-control form-control-lg form-control-solid"
+
+          rows="10"
+          style="min-height: 100px"
+        ></textarea> -->
+        <quill-editor #editor [modules]="quillconfig"   formControlName="caseAbstract" [styles]="{'min-height': '120px' }" ></quill-editor>
+        <div
+          class="fv-plugins-message-container invalid-feedback"
+          *ngIf="
+            caseAbstract?.hasError('minAbstractLength') &&
+            caseAbstract?.touched
+          "
+        >
+          Case Abstract should be at least 13 characters long.
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="d-flex justify-content-between">
+  <div class="action-btns d-flex gap-2"  style="margin-left: auto; ">
+    <button
+    matStepperNext
+    class="primary-btn"
+    (click)="createCaseInfo(false)"
+    style="order: 2;"
+    [disabled]="formBasics.invalid"
+    [ngClass]="{
+      'primary-btn-disabled': formBasics.invalid,
+      'primary-btn': formBasics.valid
+    }"
+  >
+    Next
+  </button>
+  <button
+  class="primary-btn"
+  style=" order: 1;"
+  (click)="createCaseInfo(true)"
+  [disabled]="formBasics.invalid"
+  [ngClass]="{
+    'primary-btn-disabled': formBasics.invalid,
+    'primary-btn': formBasics.valid
+  }"
+>
+  Save as draft
+</button>
+  </div>
+</div>
+
+

@@ -1,0 +1,19 @@
+<div class="custom-dropdown">
+
+  <div class="selected-option d-flex justify-content-between" (click)="toggleDropdown($event)">
+    <span>
+              <div [ngClass]="'flag-' + (selectedCountry?.code?.toLowerCase())" class="flag ps-3 ms-2"></div>
+       {{ selectedCountry?.name || '' }}</span>
+       <i class="material-icons">keyboard_arrow_down</i>
+  </div>
+</div>
+
+<ul *ngIf="showDropdown" class="dropdownUL">
+    <input type="text" class="search-input" #searchInput (input)="onSearch($event)" (click)="stopPropagation($event)"
+      placeholder="Type to search" />
+  <li *ngFor="let country of filteredCountries"  (click)="selectCountry(country)" class="d-flex align-items-center ps-2">
+        <div [ngClass]="'flag-' + (country?.code?.toLowerCase())" class="flag ps-3 ms-2"></div>
+
+    <span class="ps-1">{{country.name}}</span>
+  </li>
+</ul>

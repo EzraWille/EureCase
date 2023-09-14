@@ -1,0 +1,165 @@
+<section class="wrapper pt-10">
+  <div class="row gy-5 gx-xl-10 pt-5">
+    <div class="col-12 d-flex justify-content-between">
+      <div class="document-title pb-10 d-flex align-items-center justify-content-center">
+        <div class="icon ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="30" viewBox="0 0 28 30" fill="none">
+            <path d="M20.3522 4.38867C21.6427 4.38867 22.6858 5.42033 22.6858 6.6967V9.08991H18.0186V6.6967C18.0186 5.42033 19.0617 4.38867 20.3522 4.38867Z" fill="white" stroke="#3764BA" stroke-width="0.868421" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3.15039 3.28444C3.15039 2.80482 3.5392 2.41602 4.01881 2.41602H21.8175C22.2971 2.41602 22.686 2.80482 22.686 3.28444V25.9448C22.686 27.8632 21.1307 29.4184 19.2123 29.4184H4.01881C3.5392 29.4184 3.15039 29.0296 3.15039 28.55V3.28444Z" fill="#3764BA"/>
+            <path d="M16.0291 25.7364C16.0291 27.4064 17.3948 28.7573 19.0832 28.7573L4.02771 28.8956C2.33934 28.8956 0.973633 27.5446 0.973633 25.8747V22.7477L16.0291 22.6094V25.7364Z" fill="white"/>
+            <path d="M22.1373 25.7364C22.1373 27.4064 20.7716 28.7573 19.0832 28.7573M19.0832 28.7573C17.3948 28.7573 16.0291 27.4064 16.0291 25.7364V22.6094L0.973633 22.7477V25.8747C0.973633 27.5446 2.33934 28.8956 4.02771 28.8956L19.0832 28.7573Z" stroke="#3764BA" stroke-width="0.868421" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.13574 8.31348H13.2978" stroke="white" stroke-width="0.868421" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.51221 11.3555H16.9756" stroke="white" stroke-width="0.868421" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.51221 14.0898H16.9756" stroke="white" stroke-width="0.868421" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.51221 16.6523H16.9756" stroke="white" stroke-width="0.868421" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7.51221 19.248H16.9756" stroke="white" stroke-width="0.868421" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M25.2879 12.2488L24.7717 12.1637C24.062 12.0467 23.449 12.6742 23.5995 13.3762L23.7071 13.8868C23.9222 14.8866 22.6855 15.5354 21.965 14.8121L21.5993 14.4399C21.0939 13.9293 20.2228 14.0889 19.9217 14.7377L19.7066 15.2057C19.2872 16.1311 17.9 15.9502 17.7494 14.9398L17.6741 14.4292C17.5666 13.7166 16.7708 13.3444 16.1471 13.6954L15.6954 13.9507C14.8029 14.4612 13.792 13.5039 14.2651 12.5998L14.5018 12.1425C14.8351 11.5043 14.4157 10.7385 13.6952 10.664L13.179 10.6108C12.1574 10.5044 11.9101 9.14302 12.8242 8.68565L13.2973 8.45155C13.9426 8.13246 14.0608 7.27096 13.5231 6.78168L13.136 6.4306C12.3725 5.74986 12.9854 4.50549 13.9963 4.66504L14.5125 4.75008C15.2222 4.86708 15.8352 4.23951 15.6847 3.53751L15.5772 3.02698C15.3621 2.02715 16.5988 1.37833 17.3193 2.10161L17.6849 2.47386C18.1903 2.98441 19.0614 2.82483 19.3625 2.17601L19.5776 1.70806C19.997 0.782691 21.3842 0.963511 21.5348 1.97398L21.6101 2.48451C21.7176 3.19715 22.5134 3.56949 23.1371 3.21849L23.5888 2.96323C24.4813 2.45267 25.4922 3.40985 25.0191 4.31395L24.7825 4.77137C24.4491 5.40956 24.8685 6.1754 25.5891 6.24986L26.1052 6.30296C27.1268 6.40933 27.3742 7.77086 26.4601 8.22823L25.9869 8.4622C25.3417 8.78129 25.2234 9.64292 25.7611 10.1322L26.1482 10.4832C26.9117 11.1639 26.2988 12.4084 25.2879 12.2488Z" fill="#ECB852" stroke="white" stroke-width="0.868421" stroke-miterlimit="10" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>Certificates</span>
+      </div>
+      <a (click)="showAll()" *ngIf="!showAllCertificates" class="pb-50 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer">
+        <i class="material-icons">arrow_drop_down</i>
+        <span class="fs-6">See All</span>
+      </a>
+      <a (click)="hideCertificates()" *ngIf="showAllCertificates" class="pb-50 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer">
+        <i class="material-icons">arrow_drop_up</i>
+        <span class="fs-6">Hide</span>
+      </a>
+    </div>
+    <div class="col-12 d-flex flex-wrap gap-4 justify-content-center ">
+      <div class="card-wrap" *ngFor="let certificate of displayedCertificates " >
+        <div class="card card-blog card-plain p-4">
+          <div class="position-relative">
+            <a class="d-block shadow-xl border-radius-xl">
+              <img src="https://www.edrawsoft.com/templates/images/school-certificate.png" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+            </a>
+          </div>
+          <div class="card-body px-1 pb-0">
+            <div class="text-center">
+              <!--begin::Link-->
+              <a class="btn btn-sm btn-primary btn-primary-eu btn-primary btn-primary-eu-eu me-2" href="">View</a>
+              <!--end::Link-->
+              <!--begin::Link-->
+              <a class="btn btn-sm btn-light" href="">Delete</a>
+              <!--end::Link-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-12 ">
+      <a
+      (click)="addCertificate()"
+      class="pb-10 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer"
+    >
+      <i class="material-icons pr-10 fs-5">add_circle_outline</i>
+      <span class="fs-6">Add More Certificate</span></a>
+    </div>
+  </div>
+  <div class="row gy-5 gx-xl-10 pt-5">
+    <div class="col-12 d-flex justify-content-between">
+      <div class="document-title pb-10 d-flex align-items-center justify-content-center">
+        <div class="icon ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+            <path d="M24.7301 21.1704L23.7901 21.0203C22.4901 20.8103 21.3801 21.9703 21.6501 23.2603L21.8501 24.1904C22.2301 26.0204 20.0001 27.2203 18.6801 25.8903L18.0101 25.2103C17.0801 24.2703 15.5001 24.5603 14.9701 25.7603L14.5801 26.6303C13.8101 28.3403 11.3001 27.9903 11.0201 26.1403L10.8801 25.2003C10.6801 23.9003 9.24012 23.2003 8.09012 23.8603L7.26014 24.3303C5.64014 25.2603 3.80013 23.5003 4.66013 21.8403L5.10013 20.9903C5.71013 19.8203 4.95014 18.4103 3.64014 18.2603L2.69013 18.1604C0.83013 17.9604 0.380116 15.4603 2.05012 14.6203L2.90012 14.1904C4.08012 13.6004 4.29013 12.0103 3.32013 11.1203L2.61011 10.4803C1.22011 9.2203 2.33014 6.94031 4.17014 7.24031L5.11011 7.39033C6.41011 7.60033 7.52013 6.44034 7.25013 5.15034L7.05012 4.22029C6.67012 2.39029 8.90013 1.19034 10.2201 2.52034L10.8901 3.20027C11.8201 4.14027 13.4001 3.85034 13.9301 2.65034L14.3201 1.78035C15.0901 0.0703471 17.6001 0.420337 17.8801 2.27034L18.0201 3.21028C18.2201 4.51028 19.6601 5.21037 20.8101 4.55037L21.6401 4.08027C23.2601 3.15027 25.1001 4.91039 24.2401 6.57039L23.8001 7.42036C23.1901 8.59036 23.9501 10.0003 25.2601 10.1503L26.2101 10.2503C28.0701 10.4503 28.5201 12.9504 26.8501 13.7904L26.0001 14.2203C24.8201 14.8103 24.6101 16.4004 25.5801 17.2904L26.2901 17.9304C27.6801 19.1904 26.5701 21.4704 24.7301 21.1704Z" fill="#3764BA" stroke="#3764BA" stroke-miterlimit="10" stroke-linecap="round"/>
+            <path d="M15.2301 9.27039L16.0201 11.7103C16.1201 12.0003 16.3901 12.2003 16.7001 12.2003H19.2701C19.9601 12.2003 20.2501 13.0904 19.6901 13.4904L17.6101 15.0004C17.3601 15.1804 17.2501 15.5104 17.3501 15.8004L18.1401 18.2404C18.3501 18.9004 17.6001 19.4504 17.0401 19.0404L14.9601 17.5304C14.7101 17.3504 14.3701 17.3504 14.1201 17.5304L12.0401 19.0404C11.4801 19.4504 10.7201 18.9004 10.9401 18.2404L11.7301 15.8004C11.8301 15.5104 11.7301 15.1804 11.4701 15.0004L9.39009 13.4904C8.83009 13.0804 9.12007 12.2003 9.81007 12.2003H12.3801C12.6901 12.2003 12.9601 12.0003 13.0601 11.7103L13.8501 9.27039C14.0601 8.61039 15.0001 8.61039 15.2101 9.27039H15.2301Z" fill="#ECB852" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span>Awards</span>
+      </div>
+      <a (click)="showAllAwardsFiles()" *ngIf="!showAllAwards" class="pb-50 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer">
+        <i class="material-icons">arrow_drop_down</i>
+        <span class="fs-6">See All</span>
+      </a>
+      <a (click)="hideAwards()" *ngIf="showAllAwards" class="pb-50 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer">
+        <i class="material-icons">arrow_drop_up</i>
+        <span class="fs-6">Hide</span>
+      </a>
+    </div>
+    <div class="col-12 d-flex flex-wrap gap-4 justify-content-center ">
+      <div class="card-wrap" *ngFor="let award of displayedAwards " >
+        <div class="card card-blog card-plain p-4">
+          <div class="position-relative">
+            <a class="d-block shadow-xl border-radius-xl">
+              <img src="https://d2vyhi5ouo1we3.cloudfront.net/force_jpg/aHR0cHM6Ly9pbWFnZXMuYmFubmVyYmVhci5jb20vcmVxdWVzdHMvaW1hZ2VzLzAwOC85MjQvNTc5L29yaWdpbmFsL2VhYzQyY2FiZjM5YzIxY2Y4NThlNWY4NDRlZmM0YTA1MjJmOGUxNzkucG5nPzE2MzI4MDgzMDI=/image.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+            </a>
+          </div>
+          <div class="card-body px-1 pb-0">
+            <div class="text-center">
+              <!--begin::Link-->
+              <a class="btn btn-sm btn-primary btn-primary-eu me-2" href="">View</a>
+              <!--end::Link-->
+              <!--begin::Link-->
+              <a class="btn btn-sm btn-light" href="">Delete</a>
+              <!--end::Link-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-12">
+      <a
+      (click)="addCertificate()"
+      class="pb-10 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer"
+    >
+      <i class="material-icons pr-10 fs-5">add_circle_outline</i>
+      <span class="fs-6">Add More Awards</span></a>
+    </div>
+  </div>
+  <div class="row gy-5 gx-xl-10 pt-5">
+    <div class="col-12 d-flex justify-content-between">
+      <div class="document-title pb-10 d-flex align-items-center justify-content-center">
+        <div class="icon ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="47" height="50" viewBox="0 0 47 50" fill="none">
+            <path d="M40.7163 36.837L39.142 36.582C36.9649 36.2251 35.1059 38.1965 35.5581 40.3889L35.893 41.9695C36.5294 45.0796 32.7948 47.1189 30.5841 44.8586L29.4621 43.7028C27.9046 42.1053 25.2585 42.5982 24.3709 44.6376L23.7177 46.1162C22.4282 49.0223 18.2246 48.4275 17.7557 45.2834L17.5212 43.6858C17.1863 41.4765 14.7746 40.2869 12.8487 41.4085L11.4587 42.2072C8.74564 43.7878 5.66412 40.7967 7.10439 37.9755L7.84127 36.531C8.86286 34.5426 7.59008 32.1463 5.39618 31.8914L3.80516 31.7215C0.690164 31.3816 -0.0634902 27.1328 2.73331 25.7052L4.15684 24.9746C6.13303 23.9719 6.48474 21.2696 4.86025 19.757L3.67116 18.6693C1.34328 16.528 3.20228 12.6531 6.28379 13.163L7.85799 13.418C10.0351 13.7749 11.8941 11.8035 11.4419 9.61112L11.107 8.0305C10.4706 4.92043 14.2052 2.88112 16.4159 5.14145L17.538 6.29698C19.0955 7.89451 21.7415 7.40178 22.6291 5.36239L23.2823 3.88384C24.5718 0.977708 28.7754 1.57251 29.2443 4.71657L29.4788 6.314C29.8137 8.52333 32.2254 9.71313 34.1513 8.59146L35.5414 7.79254C38.2544 6.21202 41.3359 9.20331 39.8956 12.0245L39.1587 13.469C38.1371 15.4574 39.41 17.8536 41.6039 18.1086L43.1948 18.2785C46.3098 18.6184 47.0635 22.8672 44.2667 24.2947L42.8432 25.0254C40.867 26.0281 40.5153 28.7304 42.1397 30.243L43.3288 31.3307C45.6567 33.472 43.7978 37.3468 40.7163 36.837Z" fill="#3764BA"/>
+            <path d="M14.9358 26.4791C14.1847 25.7337 14.1847 24.5307 14.9358 23.7896C15.6867 23.0467 16.9043 23.0467 17.6552 23.7896L21.7345 27.823L31.2527 18.4112C32.0038 17.667 33.2212 17.667 33.9722 18.4112C34.7232 19.1529 34.7232 20.3578 33.9722 21.1007L23.0942 31.8557C22.3432 32.5962 21.1256 32.5962 20.3748 31.8557L14.9358 26.4791Z" fill="#ECB852"/>
+            <path d="M39.0611 37.0755L39.0621 37.0756L40.6347 37.3303C40.6349 37.3303 40.6352 37.3304 40.6355 37.3304C44.2274 37.924 46.3452 33.4259 43.6674 30.9627L43.6663 30.9617L42.4805 29.877C42.4799 29.8765 42.4794 29.8761 42.4789 29.8756C41.104 28.5935 41.4117 26.3124 43.0694 25.4713L43.0715 25.4702L44.494 24.7401C47.7214 23.0927 46.8708 18.1766 43.2491 17.7814L43.2479 17.7813L41.6616 17.6119C41.6608 17.6118 41.6601 17.6117 41.6593 17.6117C39.8184 17.3962 38.7396 15.379 39.6035 13.6975L39.6041 13.6962L40.3409 12.2518C40.341 12.2518 40.341 12.2517 40.341 12.2517C41.9935 9.01447 38.4619 5.51401 35.2909 7.35976C35.2905 7.36001 35.2901 7.36026 35.2897 7.36051L33.9021 8.15795L33.8997 8.1594C32.2879 9.09809 30.2574 8.10997 29.9733 6.24004C29.9732 6.23971 29.9732 6.23938 29.9731 6.23905L29.739 4.64397L29.7389 4.64282C29.1978 1.01492 24.3224 0.307113 22.8253 3.68104L22.8249 3.68179L22.1718 5.16034L22.1707 5.16285C21.4243 6.87772 19.205 7.28986 17.8966 5.94851C17.8964 5.94832 17.8962 5.94813 17.896 5.94794L16.7746 4.79312L16.7734 4.79184C14.196 2.15659 9.88591 4.55731 10.6171 8.13073L10.6171 8.13074L10.6178 8.13416L10.9522 9.71212C10.9523 9.71253 10.9524 9.71294 10.9525 9.71335C11.3351 11.5727 9.75873 13.2229 7.93887 12.9245L7.93793 12.9244L6.3654 12.6697C6.3651 12.6697 6.36479 12.6696 6.36448 12.6695C2.77261 12.0761 0.654854 16.5741 3.33265 19.0373L3.33368 19.0383L4.51953 20.123C4.52005 20.1234 4.52056 20.1239 4.52108 20.1244C5.89595 21.4065 5.5883 23.6876 3.9306 24.5287L3.92853 24.5298L2.506 25.2599C2.50598 25.2599 2.50596 25.2599 2.50594 25.2599C-0.72141 26.9073 0.129227 31.8234 3.75093 32.2186L3.75207 32.2187L5.33847 32.3881C5.33922 32.3882 5.33997 32.3883 5.34072 32.3883C7.18164 32.6038 8.26044 34.621 7.39654 36.3025L7.39588 36.3038L6.65906 37.7482C6.65904 37.7482 6.65902 37.7483 6.65899 37.7483C5.00643 40.9856 8.53828 44.4857 11.7091 42.64C11.7095 42.6398 11.71 42.6395 11.7104 42.6393L13.0978 41.8421L13.1003 41.8406C14.7121 40.9019 16.7425 41.8898 17.0267 43.7596C17.0268 43.76 17.0268 43.7604 17.0269 43.7607L17.261 45.356L17.2611 45.3572C17.8022 48.9851 22.6776 49.6929 24.1747 46.319L24.1751 46.3182L24.8282 44.8397L24.8293 44.8371C25.5757 43.1223 27.795 42.71 29.1034 44.0512C29.1036 44.0514 29.1038 44.0516 29.1041 44.0518L30.2254 45.2068L30.2266 45.2082C32.804 47.8434 37.1141 45.4427 36.3829 41.8693L36.3822 41.8658L36.0478 40.2879C36.0477 40.2876 36.0476 40.2872 36.0476 40.2869C35.6647 38.4275 37.2412 36.7771 39.0611 37.0755Z" stroke="white"/>
+          </svg>
+        </div>
+        <span>Accreditation</span>
+      </div>
+      <a (click)="showAllAccreditationFiles()" *ngIf="!showAllAccreditation" class="pb-50 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer">
+        <i class="material-icons">arrow_drop_down</i>
+        <span class="fs-6">See All</span>
+      </a>
+      <a (click)="hideAccreditationFiles()" *ngIf="showAllAccreditation" class="pb-50 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer">
+        <i class="material-icons">arrow_drop_up</i>
+        <span class="fs-6">Hide</span>
+      </a>
+    </div>
+    <div class="col-12 d-flex flex-wrap gap-4 justify-content-center ">
+      <div class="card-wrap" *ngFor="let accreditation of displayedAccreditation " >
+        <div class="card card-blog card-plain p-4">
+          <div class="position-relative">
+            <a class="d-block shadow-xl border-radius-xl">
+              <img src="https://i.etsystatic.com/38251482/r/il/25b3a2/4368521404/il_570xN.4368521404_7g2n.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+            </a>
+          </div>
+          <div class="card-body px-1 pb-0">
+            <div class="text-center">
+              <!--begin::Link-->
+              <a class="btn btn-sm btn-primary btn-primary-eu me-2" href="">View</a>
+              <!--end::Link-->
+              <!--begin::Link-->
+              <a class="btn btn-sm btn-light" href="">Delete</a>
+              <!--end::Link-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-12">
+      <a
+      (click)="addCertificate()"
+      class="pb-10 add-dynamic d-flex flex-row align-items-center text-decoration-none cursor-pointer"
+    >
+      <i class="material-icons pr-10 fs-5">add_circle_outline</i>
+      <span class="fs-6">Add More Accreditation</span></a>
+    </div>
+  </div>
+
+</section>

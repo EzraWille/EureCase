@@ -1,0 +1,17 @@
+<div class="position-relative">
+  <app-cases-header></app-cases-header>
+  <div class="d-flex sub-nav-links">
+    <div class="content-wrapper">
+      <div class="d-flex justify-content-end align-items-center  position-relative z-index-2 pt-10 ">
+        <div class="tabs-nav custom-tabs">
+          <a class="custom-tab" *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive
+            #rla="routerLinkActive" [class.active]="rla.isActive" id="navlink">{{link.label}}</a>
+        </div>
+       
+      </div>
+      <div class="custom-tab-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

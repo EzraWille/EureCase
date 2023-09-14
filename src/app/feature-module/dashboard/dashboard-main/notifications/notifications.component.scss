@@ -1,0 +1,22 @@
+a{
+  text-decoration: none;
+}
+.notifiy{
+  width: 15px;
+  height: 15px;
+  background-color: red;
+    position: absolute;
+      left: 42px;
+      top: 6px;
+  border-radius: 50%;
+line-height: 14px;
+  text-align: center;
+}
+.card-hover {
+  transition: transform 0.3s ease;
+
+}
+
+.card-hover:hover {
+  transform: translate(0, -5px);
+    box-shadow: 4px 12px 20px 0px rgba(1, 130, 213, 0.10)}

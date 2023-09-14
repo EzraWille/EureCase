@@ -1,0 +1,176 @@
+.ql-toolbar{
+
+    border: 1px solid #e2e2e2 !important;
+    border-top-left-radius: .95rem;
+    border-top-right-radius: .95rem;
+
+  }
+
+  .ql-container.ql-snow{
+    border: 1px solid #e2e2e2;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(239, 242, 245);
+    border-top: 0;
+    border-bottom-right-radius: .95rem;
+    border-bottom-left-radius: .95rem;
+}
+
+
+.vis-timeline {
+  border: 1px solid var(--bs-border-color) !important;
+  border-radius: 0.475rem !important;
+}
+
+.vis-timeline .vis-labelset .vis-label {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--bs-gray-900);
+}
+
+.vis-timeline .vis-foreground .vis-group {
+  border-bottom: none;
+}
+
+.vis-timeline .vis-item {
+  position: absolute;
+  color: var(--bs-gray-700);
+  border-color: var(--bs-primary);
+  border-width: 1px;
+  background-color: var(--bs-gray-100);
+  border-radius: 0.475rem !important;
+}
+
+.vis-timeline .vis-item.vis-selected {
+  background-color: var(--bs-warning-light);
+  color: var(--bs-gray-700);
+  border-color: var(--bs-warning);
+}
+
+.vis-timeline .vis-item .vis-item-content {
+  padding: 0.75rem 1rem;
+  width: 100%;
+  transform: none !important;
+}
+
+.vis-timeline .vis-time-axis {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.vis-timeline .vis-time-axis .vis-text {
+  color: var(--bs-gray-400);
+}
+
+.vis-timeline .vis-time-axis .vis-grid.vis-minor {
+  border-left-color: var(--bs-border-dashed-color) !important;
+}
+
+.vis-timeline .vis-time-axis .vis-grid.vis-vertical {
+  border-left-style: dashed !important;
+}
+
+.vis-timeline .vis-panel .vis-shadow {
+  box-shadow: none !important;
+}
+
+.vis-timeline .vis-panel.vis-bottom, .vis-timeline .vis-panel.vis-center, .vis-timeline .vis-panel.vis-left, .vis-timeline .vis-panel.vis-right, .vis-timeline .vis-panel.vis-top {
+  border-color: var(--bs-border-color) !important;
+}
+
+.vis-timeline .vis-current-time {
+  background-color: var(--bs-success);
+}
+
+.vis-timeline-custom .vis-timeline {
+  border: 0 !important;
+}
+
+.vis-timeline-custom .vis-timeline .vis-label {
+  padding-left: 0 !important;
+}
+
+.vis-timeline-custom .vis-panel.vis-bottom, .vis-timeline-custom .vis-panel.vis-center, .vis-timeline-custom .vis-panel.vis-left, .vis-timeline-custom .vis-panel.vis-right, .vis-timeline-custom .vis-panel.vis-top {
+  border: 0 !important;
+}
+
+.vis-timeline-custom .vis-item {
+  background-color: transparent;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.vis-timeline-custom .vis-item .vis-item-content {
+  padding: 0 !important;
+}
+
+.vis-timeline .vis-item.vis-selected{
+  background-color: #ffeacf !important;
+}
+.swal2-title{
+  font-size: 1.5rem !important;
+  color: black !important;
+}
+.mat-select-form-field{
+  border: 1px solid #dee2e6 !important;
+  width: 100% !important;
+  padding: 0.375rem 0.75rem !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 37.5px !important;
+  height: 45px !important;
+  border-radius: 5px !important;
+  color: 212529 !important;
+  background-color: #fff !important;
+}
+.mat-select-form-field-sm {
+  border: 1px solid #dee2e6 !important;
+  width: 60% !important;
+  padding: 0 0.75rem !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 25.5px !important;
+  height: 25px !important;
+  border-radius: 5px !important;
+  color: 212529 !important;
+  background-color: #fff !important;}
+
+.mat-pseudo-checkbox-checked{
+  background: #0778b9 !important;
+}
+.mat-pseudo-checkbox-checked::after {
+  color: #fff !important;
+}
+div:where(.swal2-icon).swal2-warning {
+  width: 52px !important;
+  border-color: #fe9f4c !important;
+  color: #fe9f4c !important;
+  height: 52px !important;
+}
+div:where(.swal2-container) h2:where(.swal2-title) {
+padding: 1.6em 1em 0 !important;
+}
+.mat-mdc-checkbox-ripple, .mdc-checkbox__ripple {
+  top: 2px !important;
+  left: 2px !important;
+  right: 0px;
+  bottom: 1px !important;
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+div:where(.swal2-icon).swal2-error [class^="swal2-x-mark-line"] {
+
+  border-radius: 1em !important;
+  background-color: #df0000 !important;
+}
+div:where(.swal2-icon).swal2-error {
+  border-color: #df0000 !important;
+
+}

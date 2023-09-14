@@ -1,0 +1,125 @@
+<!-- Sidebar -->
+<div
+  class="sidebar"
+  (mouseover)="miniSideBarMouseHover('over')"
+  (focus)="miniSideBarMouseHover('over')"
+  (mouseout)="miniSideBarMouseHover('out')"
+  (blur)="miniSideBarMouseHover('out')"
+
+  id="sidebar"
+>
+
+    <div class="sidebar-inner slimScroll pt-3 pl-20">
+      <ul class="nav user-menu">
+
+  <!-- Notifications -->
+  <li class="nav-item dropdown noti-dropdown me-2">
+    <a href="#" class="dropdown-toggle nav-link header-nav-list" data-bs-toggle="dropdown">
+      <img src="assets/img/icons/header-icon-05.svg" alt="">
+    </a>
+    <div class="dropdown-menu notifications">
+      <div class="topnav-dropdown-header">
+        <span class="notification-title">Notifications</span>
+        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+      </div>
+
+      <div class="topnav-dropdown-footer">
+        <a href="javascript:void(0);">View all Notifications</a>
+      </div>
+    </div>
+  </li>
+  <!-- /Notifications -->
+
+
+  <!-- User Menu -->
+  <li class="nav-item dropdown has-arrow new-user-menus" >
+    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown"   >
+      <span class="user-img">
+        <img class="rounded" src="https://image-cdn.essentiallysports.com/wp-content/uploads/robert-pattinson-the-batman-96x96.jpg" width="31" alt="Ahmad Ali">
+        <div class="user-text">
+          <h6>Ahmad Ali</h6>
+          <p class="text-muted mb-0 "><span class="text-researcher">Researcher</span></p>
+        </div>
+      </span>
+    </a>
+    <div class="dropdown-menu" [ngClass]="status ? 'show' : ''"  >
+      <div class="user-header">
+        <div class="avatar avatar-sm">
+          <img src="https://image-cdn.essentiallysports.com/wp-content/uploads/robert-pattinson-the-batman-96x96.jpg" alt="User Image" class="avatar-img rounded-circle">
+        </div>
+        <div class="user-text">
+          <h6>Ahmad Ali</h6>
+          <p class="text-muted mb-0">Administrator</p>
+        </div>
+      </div>
+      <a class="dropdown-item" [routerLink]="'/profile/profile-main'">My Profile</a>
+      <a class="dropdown-item" [routerLink]="'/inbox/inbox-main'">Inbox</a>
+      <a class="dropdown-item" [routerLink]="'/login'">Logout</a>
+    </div>
+  </li>
+  <!-- /User Menu -->
+
+</ul>
+          <hr class="horizontal dark mt-0">
+      <div id="sidebar-menu " class="sidebar-menu">
+        <ul>
+          <ng-container *ngFor="let mainTittle of side_bar_data">
+            <li class="menu-title">
+              <span>{{ mainTittle.tittle }}</span>
+            </li>
+            <ng-container *ngFor="let menu of mainTittle?.menu">
+              <li
+                [class.active]="base === menu.base "
+                *ngIf="menu?.hasSubRoute === false"
+                class="mt-3"
+              >
+                <a [routerLink]="menu.route"  style="text-decoration: none;"
+                  >
+                  <i class="material-icons">{{menu.icon}}</i>
+
+                  <span class="feature-name">{{ menu?.menuValue }}</span></a
+                >
+              </li>
+              <li
+                class="submenu"
+                *ngIf="menu.hasSubRoute === true"
+                [class.active]="base === menu.base"
+
+              >
+                <a
+                (click)="expandSubMenus(menu)"
+                  href="javascript:void(0);"
+                  [ngClass]="{ subdrop: menu.showSubRoute === true }"
+                  ><i class="material-icons">{{menu.icon}}</i>
+                  <span> {{ menu.menuValue }}</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul
+                  [ngClass]="
+                    menu.showSubRoute === true
+                      ? 'show-sub-menu'
+                      : 'hide-sub-menu'
+                  "
+                >
+                  <ng-container *ngFor="let subMenus of menu.subMenus">
+                    <li>
+                      <a
+
+                        [routerLink]="subMenus.route"
+                        [class.active]="page === subMenus.base || page === subMenus.base2 || page === subMenus.base3 ||page === subMenus.base4 || page === subMenus.base5 || page === subMenus.base5 || page === subMenus.base6"
+                        >{{ subMenus.menuValue }}</a
+                      >
+
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ng-container>
+
+        </ul>
+
+      </div>
+    </div>
+</div>
+<!-- /Sidebar -->

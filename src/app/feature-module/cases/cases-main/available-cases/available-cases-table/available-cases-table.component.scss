@@ -1,0 +1,10 @@
+.symbol{
+    box-shadow: 1px 2px 3px rgba(25, 105, 255, 0.1);
+  }
+  .case-card{
+    transition: all 0.2s ease-in-out;
+  }
+  .case-card:hover{
+    box-shadow:4px 8px 35px 0px rgb(161 218 255 / 30%) !important;
+
+  }

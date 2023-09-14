@@ -1,0 +1,245 @@
+<div class="case-info-container pb-100">
+  <div class="basic-info-form pt-10">
+    <div class="w-100">
+      <form [formGroup]="requirementForm" class="row g-3 d-flex">
+        <div class="row">
+          <!-- requirement name -->
+          <div class="col-md-3 grid-item fv-row mt-10">
+            <label
+              class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+            >
+              <span class="text-muted fs-6 fw-medium pl-5"> Name</span>
+            </label>
+
+            <div class="d-flex flex-column mr-auto">
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control mb-2 fs-6"
+                name="name"
+                placeholder="Requirement Name"
+                value="name"
+              />
+              <!--end::Input-->
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="name?.hasError('required') && name?.touched"
+              >
+                Requirement Name is required
+              </div>
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  requirementForm.get('name')?.hasError('duplicateName') &&
+                  requirementForm.get('name')?.dirty
+                "
+              >
+                Requirement Name is already taken
+              </div>
+            </div>
+          </div>
+          <!-- Requirement type -->
+          <div class="col-md-3 grid-item fv-row mt-10">
+            <label
+              class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+            >
+              <span class="text-muted fs-6 fw-medium pl-5"> Type</span>
+            </label>
+            <!--begin::Label-->
+            <div class="d-flex flex-column mr-auto">
+              <mat-select
+                class="mat-select-form-field"
+                formControlName="type"
+                name="type"
+                data-control="select2"
+                data-hide-search="true"
+                data-placeholder="Requirement Type"
+              >
+                <mat-option value="" disabled selected class="fs-6"
+                  >Select Requirement Type</mat-option
+                >
+                <mat-option value="SOFTWARE" class="fs-6">Software</mat-option>
+                <mat-option value="HARDWARE" class="fs-6">Hardware</mat-option>
+              </mat-select>
+              <!--end::Input-->
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="type?.hasError('required') && type?.touched"
+              >
+                Requirement Type is required
+              </div>
+            </div>
+          </div>
+          <!-- Requirement Responsibility -->
+          <div class="col-md-3 grid-item fv-row mt-10">
+            <label
+              class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+            >
+              <span class="text-muted fs-6 fw-medium pl-5">
+                Responsibility</span
+              >
+            </label>
+            <!--begin::Label-->
+            <div class="d-flex flex-column mr-auto">
+              <mat-select
+                class="mat-select-form-field"
+                formControlName="responsibility"
+                name="responsibility"
+                data-control="select2"
+                data-hide-search="true"
+                data-placeholder="Requirement Responsibility"
+              >
+                <mat-option value="" disabled selected class="fs-6"
+                  >Select Responsibility</mat-option
+                >
+                <mat-option value="Owner" class="fs-6">Owner</mat-option>
+                <mat-option value="Participant" class="fs-6"
+                  >Participant</mat-option
+                >
+              </mat-select>
+              <!--end::Input-->
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  responsibility?.hasError('required') &&
+                  responsibility?.touched
+                "
+              >
+                Requirement Responsibility is required
+              </div>
+            </div>
+          </div>
+          <!-- Requirement Owner -->
+          <div class="col-md-3 grid-item fv-row mt-10">
+            <label
+              class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+            >
+              <span class="text-muted fs-6 fw-medium pl-5"> Owner</span>
+            </label>
+            <!--begin::Label-->
+            <div class="d-flex flex-column mr-auto">
+              <mat-select
+                formControlName="owner"
+                class="mat-select-form-field"
+                name="owner"
+                data-control="select2"
+                data-hide-search="true"
+                data-placeholder="Requirement Owner"
+              >
+                <mat-option value="" disabled selected class="fs-6"
+                  >Select Requirement Owner</mat-option
+                >
+                <mat-option value="Owner" class="fs-6">Owner</mat-option>
+                <mat-option value="Owner" class="fs-6">Participant</mat-option>
+              </mat-select>
+              <!--end::Input-->
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="owner?.hasError('required') && owner?.touched"
+              >
+                Requirement Owner is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-10">
+          <div class="col-12">
+            <label
+              class="d-flex align-items-center fs-5 fw-bold min-w-100px mr-auto"
+            >
+              <span class="text-muted fs-6 fw-medium pl-5"> Description</span>
+            </label>
+            <div class="d-flex flex-column w-100 mr-auto">
+              <textarea
+                formControlName="description"
+                class="form-control form-control-lg form-control-solid w-100"
+                name="description"
+                rows="10"
+                style="min-height: 100px"
+              ></textarea>
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  description?.hasError('required') && description?.touched
+                "
+              >
+                Requirement Description is required
+              </div>
+              <div
+                class="fv-plugins-message-container invalid-feedback"
+                *ngIf="
+                  description?.hasError('minAbstractLength') &&
+                  description?.touched
+                "
+              >
+                Requirement Description should be at least 10 characters long.
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          (click)="addRequirement()"
+          class="add-req text-decoration-none cursor-pointer"
+          style="margin-left: 10px"
+          [ngClass]="{
+            'add-req-invalid': requirementForm.invalid,
+            'add-req-valid': requirementForm.valid
+          }"
+        >
+          <span>Add More Requirement</span></a
+        >
+      </form>
+    </div>
+   <ng-container *ngIf="requirements.length>0">
+    <div class="overflow-scroll">
+      <table class="table mt-3">
+        <thead>
+          <tr class="headrow">
+            <th class="text-uppercase"> Name</th>
+            <th class="text-uppercase"> Type</th>
+            <th class="text-uppercase"> Responsibility</th>
+            <th class="text-uppercase"> Owner</th>
+            <th class="text-uppercase"> Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let requirement of requirements; let i = index"
+            class="requirement-row"
+          >
+            <td>{{ requirement.name }}</td>
+            <td>{{ requirement.type }}</td>
+            <td>{{ requirement.responsibility }}</td>
+            <td>{{ requirement.owner }}</td>
+            <td>
+              {{ requirement.description }}
+            </td>
+            <td>
+              <button class="delete-req" (click)="deleteRequirement(i)">
+                <i class="bi bi-x-circle"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   </ng-container>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between">
+  <div
+    class="action-btns d-flex gap-2"
+    style="margin-left: auto"
+    style="order: 1"
+  >
+    <button class="primary-btn" style="order: 2" (click)="createCaseReq(false)">
+      Next
+    </button>
+    <button class="primary-btn" style="order: 1" (click)="createCaseReq(true)">
+      Save as draft
+    </button>
+  </div>
+  <button  matStepperPrevious class="secondary-btn">Back</button>
+</div>

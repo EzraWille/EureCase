@@ -1,0 +1,176 @@
+<!-- begin::Header -->
+<!-- <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Available Cases</span>
+      <span class="text-muted mt-1 fw-bold fs-7">Up to {{availableCases.length}} new Case</span>
+    </h3>
+
+  </div>
+  <div class="card-body py-3">
+    <div class="table-responsive">
+      <table class="table align-middle gs-0 gy-4">
+        <thead>
+          <tr class="fw-bolder text-muted bg-light">
+            <th class="ps-4 min-w-325px rounded-start text-uppercase">Case</th>
+            <th class="min-w-125px text-uppercase">Budget</th>
+            <th class="min-w-125px text-uppercase">Expiry Date</th>
+            <th class="min-w-150px text-uppercase">Offer Status</th>
+            <th class="min-w-200px text-end rounded-end text-uppercase"></th>
+          </tr>
+        </thead>
+        <tbody>
+         <ng-container *ngFor="let case of availableCases">
+          <tr  >
+            <td >
+              <div class="d-flex align-items-center pl-10">
+                <div class="symbol symbol-60px me-5">
+                  <ng-container  *ngIf="case.ownerInfo.profilePicBase64 ; else noImage">
+                    <img
+                    [src]="('data:image/jpeg;base64,'+ case.ownerInfo.profilePicBase64)"
+                      class=""
+                      alt=""
+                    />
+                  </ng-container>
+                  <ng-template #noImage>
+                    <img
+                   src="https://firebasestorage.googleapis.com/v0/b/webartpath.appspot.com/o/image%20project.png?alt=media&token=19555bcf-e269-47b4-a33a-2df0b6f9e8f6"
+                      class=""
+                      alt=""
+                    />
+                  </ng-template>
+
+                </div>
+                <div class="d-flex justify-content-start flex-column">
+                  <a
+
+                    class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
+                  >
+                  {{case.name}}
+                  </a>
+                  <span class="text-muted fw-bold text-muted d-block fs-7">
+                   {{case.ownerInfo.instituteName}}
+                  </span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <a
+
+                class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+              >
+                ${{case.budget}}
+              </a>
+
+            </td>
+            <td>
+              <a
+
+                class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"
+              >
+              {{case.expiryDate}}
+              </a>
+
+
+            </td>
+            <td>
+              <span class="badge badge-light-primary fs-7 fw-bold">{{case.offerStatus}}</span>
+            </td>
+            <td class="text-center">
+              <a (click)="view(case.uuid)" class="
+                            btn bg-light-primary  btn-color-muted btn-active-color-primary btn-sm
+                            px-4
+                            me-2
+                          ">
+                View
+              </a>
+            </td>
+          </tr>
+         </ng-container>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div> -->
+	<div class="row g-6 g-xl-9  mb-5" *ngFor="let case of availableCases">
+    <!--begin::Col-->
+    <div class="col-12"  >
+      <!--begin::Card-->
+      <a (click)="view(case.uuid)" class="cursor-pointer card border-hover-primary bg-hover-light case-card">
+        <!--begin::Card header-->
+        <div class="card-header border-0 pt-9">
+          <!--begin::Card Title-->
+          <div class="d-flex justify-content-center align-items-center">
+            <!--begin::Avatar-->
+            <div class="symbol symbol-70px w-70px bg-light">
+              <ng-container *ngIf="case.ownerInfo.profilePicBase64 ; else noImage">
+                <img [src]="('data:image/jpeg;base64,'+ case.ownerInfo.profilePicBase64)" alt="image"  />
+              </ng-container>
+              <ng-template #noImage>
+                <img
+               src="https://firebasestorage.googleapis.com/v0/b/webartpath.appspot.com/o/image%20project.png?alt=media&token=19555bcf-e269-47b4-a33a-2df0b6f9e8f6"
+
+                  alt="noProfilePic"
+                />
+              </ng-template>
+
+            </div>
+            <div class="d-flex flex-column pt-8 pl-20">
+               <!--begin::Name-->
+          <div class="fs-3 fw-bolder text-dark"> {{case.name}}</div>
+          <!--end::Name-->
+          <!--begin::Description-->
+          <p class="text-gray-400 fw-bold fs-5 mt-1 mb-7"> {{case.ownerInfo.instituteName}}</p>
+          <!--end::Description-->
+            </div>
+
+            <!--end::Avatar-->
+          </div>
+          <!--end::Car Title-->
+          <!--begin::Card toolbar-->
+          <div class="card-toolbar">
+            <span class="badge badge-light-primary fw-bolder me-auto px-4 py-3">{{case.offerStatus}}</span>
+          </div>
+          <!--end::Card toolbar-->
+        </div>
+        <!--end:: Card header-->
+        <!--begin:: Card body-->
+        <div class="card-body p-9">
+
+          <!--begin::Info-->
+          <div class="d-flex flex-wrap mb-5">
+            <!--begin::Due-->
+            <div class="border d-flex border-gray-300 border rounded min-w-125px py-3 px-4 me-7 mb-3">
+              <div class="fw-bold text-gray-600">Expiry Date :</div>
+              <div class="fs-6 text-primary fw-bolder pl-5"> {{case.expiryDate}}</div>
+            </div>
+            <!--end::Due-->
+            <!--begin::Budget-->
+            <div class="border d-flex border-gray-300 border rounded min-w-125px py-3 px-4 mb-3">
+              <div class="fw-bold text-gray-600">Budget:</div>
+              <div class="fs-6 text-primary fw-bolder pl-5">${{case.budget}}</div>
+            </div>
+            <!--end::Budget-->
+          </div>
+          <!--end::Info-->
+                    <!--begin::Description-->
+                    <p class="text-gray-600 fw-bold fs-5 mt-1 mb-7"  [innerHTML]="case.caseAbstract | truncateWords"></p>
+                    <!--end::Description-->
+
+          <!--begin::Users-->
+          <div class="symbol-group symbol-hover">
+
+            <!--begin::User-->
+            <!--begin::User-->
+
+            <!--begin::User-->
+          </div>
+          <!--end::Users-->
+        </div>
+        <!--end:: Card body-->
+      </a>
+      <!--end::Card-->
+    </div>
+    <!--end::Col-->
+
+  </div>

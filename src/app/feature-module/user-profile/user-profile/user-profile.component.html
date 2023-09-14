@@ -1,0 +1,13 @@
+<profile-header ></profile-header>
+<div class="d-flex">
+  <div class="content-wrapper">
+    <nav mat-tab-nav-bar color="primary" [tabPanel]="tabPanel" class="ps-5 pt-75 tabs-nav">
+      <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive"
+        [active]="rla.isActive">{{link.label}}</a>
+    </nav>
+    <mat-tab-nav-panel #tabPanel>
+      <router-outlet></router-outlet>
+    </mat-tab-nav-panel>
+
+  </div>
+</div>
