@@ -1,0 +1,744 @@
+<div class="m-subheader">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto col-xs-6">
+            <h3 class="m-subheader__title m-subheader__title--separator">
+                <a
+                    style="
+                        text-decoration: none;
+                        color: cornflowerblue;
+                        cursor: pointer;
+                    "
+                    (click)="navigation()"
+                >
+                    {{ l("Assignments") }}
+                </a>
+            </h3>
+            <span *ngIf="examName" class="m-section__sub">
+                {{ examName }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="m-content">
+    <div class="container">
+        <div [busyIf]="loading" [class.isDisabled]="saveLoading">
+            <mat-horizontal-stepper
+                linear
+                (selectionChange)="selectionChange($event)"
+                [(selectedIndex)]="index"
+                #stepper
+            >
+                <div *ngIf="!loading">
+                    <!-- assignment details -->
+                    <mat-step
+                        [stepControl]="sectionForm.get('examDetailsForm')"
+                    >
+                        <form [formGroup]="sectionForm.get('examDetailsForm')">
+                            <ng-template matStepLabel>{{
+                                l("AssignmentDetails")
+                            }}</ng-template>
+
+                            <div class="row">
+                                <!-- Title -->
+                                <div class="col-md-3 col-sm-12">
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        appearance="fill"
+                                        class="w-100"
+                                    >
+                                        <mat-label>{{ l("Title") }}</mat-label>
+                                        <input
+                                            required
+                                            matInput
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('title')
+                                            "
+                                            type="text"
+                                        />
+                                    </mat-form-field>
+                                </div>
+                                <!-- Subject -->
+                                <div class="col-md-3 col-sm-12">
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        class="w-100"
+                                        appearance="fill"
+                                    >
+                                        <mat-label>{{
+                                            l("Subject")
+                                        }}</mat-label>
+                                        <mat-select
+                                            required
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('subjectId')
+                                            "
+                                            (selectionChange)="
+                                                changeSubject($event)
+                                            "
+                                        >
+                                            <mat-option
+                                                *ngFor="let subject of subjects"
+                                                [value]="subject"
+                                            >
+                                                {{ subject.subjectName }}
+                                                {{ subject.programName }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                   <!-- Grade -->
+                                <div class="col-md-3 col-sm-12">
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        class="w-100"
+                                        appearance="fill"
+                                    >
+                                        <mat-label>{{ l("Grade") }}</mat-label>
+                                        <mat-select
+                                            required
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('gradeId')
+                                            "
+                                            (selectionChange)="
+                                                changeGrade($event)
+                                            "
+                                        >
+                                            <mat-option
+                                                *ngFor="let grade of grades"
+                                                [value]="grade.id"
+                                            >
+                                                {{ grade.displayName }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- AssignmentType -->
+                                <div class="col-md-3 col-sm-12">
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        class="w-100"
+                                        appearance="fill"
+                                    >
+                                        <mat-label>{{
+                                            l("AssignmentType")
+                                        }}</mat-label>
+                                        <mat-select
+                                            [disabled]="
+                                                !sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('gradeId').value ||
+                                                !sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('subjectId').value
+                                            "
+                                            required
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('examType')
+                                            "
+                                            (selectionChange)="
+                                                changeExamType($event)
+                                            "
+                                        >
+                                            <mat-option [value]="2">
+                                                {{ l("Form") }}
+                                            </mat-option>
+                                            <mat-option [value]="3">
+                                                {{ l("Attachment") }}
+                                            </mat-option>
+                                            <mat-option
+                                                [value]="4"
+                                                *ngIf="isJussorAvalible"
+                                            >
+                                                {{l('Jussor Experiments')}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                              <!-- StartDate -->
+                                <div class="col-md-3 col-sm-12">
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        appearance="fill"
+                                        class="w-100"
+                                    >
+                                        <mat-label>{{
+                                            l("StartDate")
+                                        }}</mat-label>
+                                        <input
+                                            required
+                                            (dateTimeChange)="
+                                                changeStartEndDate($event)
+                                            "
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('start')
+                                            "
+                                            [min]="today"
+                                            [max]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('end').value
+                                            "
+                                            placeholder="{{ l('StartDate') }}"
+                                            [owlDateTimeTrigger]="dtPicker3"
+                                            [owlDateTime]="dtPicker3"
+                                            matInput
+                                        />
+                                        <mat-icon matSuffix
+                                            >date_range</mat-icon
+                                        >
+                                    </mat-form-field>
+                                    <owl-date-time
+                                        [hour12Timer]="true"
+                                        #dtPicker3
+                                    >
+                                    </owl-date-time>
+                                </div>
+                                   <!-- EndDate -->
+                                <div
+                                    *ngIf="!paperFields"
+                                    class="col-md-3 col-sm-12"
+                                >
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        appearance="fill"
+                                        class="w-100"
+                                    >
+                                        <mat-label>{{
+                                            l("EndDate")
+                                        }}</mat-label>
+                                        <input
+                                            required
+                                            (dateTimeChange)="
+                                                changeStartEndDate($event)
+                                            "
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('end')
+                                            "
+                                            [min]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('start').value || today
+                                            "
+                                            placeholder="{{ l('EndDate') }}"
+                                            [owlDateTimeTrigger]="dtPicker4"
+                                            [owlDateTime]="dtPicker4"
+                                            matInput
+                                        />
+                                        <mat-icon matSuffix
+                                            >date_range</mat-icon
+                                        >
+                                    </mat-form-field>
+                                    <owl-date-time
+                                        [hour12Timer]="true"
+                                        #dtPicker4
+                                    >
+                                    </owl-date-time>
+                                </div>
+                                   <!-- CloseDate -->
+                                <div
+                                    *ngIf="!paperFields"
+                                    class="col-md-3 col-sm-12"
+                                >
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        appearance="fill"
+                                        class="w-100"
+                                    >
+                                        <mat-label>{{
+                                            l("CloseDate")
+                                        }}</mat-label>
+                                        <input
+                                            required
+                                            (dateTimeChange)="
+                                                changeStartEndDate($event)
+                                            "
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('closeDate')
+                                            "
+                                            [min]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('end').value || today
+                                            "
+                                            placeholder="{{ l('CloseDate') }}"
+                                            [owlDateTimeTrigger]="dtPicker5"
+                                            [owlDateTime]="dtPicker5"
+                                            matInput
+                                        />
+                                        <mat-icon matSuffix
+                                            >date_range</mat-icon
+                                        >
+                                    </mat-form-field>
+                                    <owl-date-time
+                                        [hour12Timer]="true"
+                                        #dtPicker5
+                                    >
+                                    </owl-date-time>
+                                </div>
+                                    <!-- examDetailsForm Total Mark -->
+                                <div
+                                    class="col-md-3 col-sm-12"
+                                    *ngIf="
+                                        sectionForm
+                                            .get('examDetailsForm')
+                                            .get('examType').value === 3
+                                    "
+                                >
+                                    <mat-form-field
+                                        [hideRequiredMarker]="false"
+                                        appearance="fill"
+                                        class="w-100"
+                                    >
+                                        <mat-label>{{
+                                            l("TotalMark")
+                                        }}</mat-label>
+                                        <input
+                                            required
+                                            matInput
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('totalMark')
+                                            "
+                                            type="number"
+                                        />
+                                    </mat-form-field>
+                                </div>
+                                <!-- Jussor attempts -->
+                                <div
+                                class="col-md-3 col-sm-12"
+                                *ngIf="
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('examType').value === 4
+                                "
+                            >
+                                <mat-form-field
+                                    [hideRequiredMarker]="false"
+                                    appearance="fill"
+                                    class="w-100"
+                                >
+                                    <mat-label>
+                                        Number Of Attempts
+                                    </mat-label>
+                                    <input
+                                        required
+                                        matInput
+                                        [formControl]="
+                                            sectionForm
+                                                .get('examDetailsForm')
+                                                .get('totalMark')
+                                        "
+                                        type="number"
+                                    />
+                                </mat-form-field>
+                            </div>
+                                 <!-- examDetailsForm Direction -->
+                                <div
+                                    class="col-md-3 col-sm-12"
+                                    *ngIf="
+                                        sectionForm
+                                            .get('examDetailsForm')
+                                            .get('examType').value === 2
+                                    "
+                                >
+                                    <mat-form-field
+                                        class="w-100"
+                                        appearance="fill"
+                                    >
+                                        <mat-label>{{
+                                            l("Direction")
+                                        }}</mat-label>
+                                        <mat-select
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('layout')
+                                            "
+                                        >
+                                            <mat-option [value]="1">
+                                                {{ l("RightToLeft(ExArabic)") }}
+                                            </mat-option>
+                                            <mat-option [value]="0">
+                                                {{
+                                                    l("LeftToRight(ExEnglish)")
+                                                }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- examDetailsForm examType -->
+                                <div
+                                    class="col-md-3 col-sm-12"
+                                    *ngIf="
+                                        sectionForm
+                                            .get('examDetailsForm')
+                                            .get('examType').value === 4
+                                    "
+                                >
+                                    <mat-form-field
+                                        class="w-100"
+                                        appearance="fill"
+                                    >
+                                        <mat-label>{{
+                                            l("Direction")
+                                        }}</mat-label>
+                                        <mat-select
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('layout')
+                                            "
+                                        >
+                                            <mat-option [value]="1">
+                                                {{ l("RightToLeft(ExArabic)") }}
+                                            </mat-option>
+                                            <mat-option [value]="0">
+                                                {{
+                                                    l("LeftToRight(ExEnglish)")
+                                                }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <mat-form-field
+                                        class="w-100"
+                                        appearance="fill"
+                                    >
+                                        <textarea
+                                            [required]="isJussor"
+                                            [formControl]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('description')
+                                            "
+                                            matInput
+                                            [placeholder]="l('Description')"
+                                        >
+                                        </textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                    </mat-step>
+                     <!-- examinee -->
+                    <mat-step [stepControl]="sectionForm.get('examineesForm')">
+                        <form [formGroup]="sectionForm.get('examineesForm')">
+                            <ng-template matStepLabel>{{
+                                l("Examinees")
+                            }}</ng-template>
+                            <examinees
+                                [isJussor]="isJussor"
+                                [fullIndividualsSelectedData]="
+                                    fullIndividualsSelectedData
+                                "
+                                [fullGroupSelectedData]="fullGroupSelectedData"
+                                [selection]="selection"
+                                [individualsForm]="
+                                    this.sectionForm
+                                        .get('examineesForm')
+                                        .get('individuals')
+                                "
+                                [classesForm]="
+                                    this.sectionForm
+                                        .get('examineesForm')
+                                        .get('classes')
+                                "
+                                [isCascadedToMicrosoftTeams]="
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('isCascadedToMicrosoftTeams').value
+                                "
+                                [classes]="classes"
+                                [teams]="teams"
+                                [teamsMembers]="teamsMembers"
+                                [classesMembers]="classesMembers"
+                            ></examinees>
+                        </form>
+                    </mat-step>
+                    <!-- assignment questions -->
+                    <mat-step>
+                        <form #matCard [formGroup]="sectionForm">
+                            <ng-template matStepLabel>{{
+                                l("AssignmentQuestions")
+                            }}</ng-template>
+
+                            <div
+                                *ngIf="
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('examType') &&
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('examType').value === 2
+                                "
+                            >
+                                <mat-card
+                                    style="
+                                        border: 2px dotted gray;
+                                        box-shadow: none;
+                                    "
+                                    class="my-3"
+                                    *ngFor="
+                                        let sectionControl of sectionForm.get(
+                                            'sections'
+                                        )['controls'];
+                                        let i = index;
+                                        trackBy: trackByFn
+                                    "
+                                >
+                                    <div class="d-flex justify-content-between">
+                                        <h4 *ngIf="isPreview">
+                                            {{
+                                                sectionControl.get("title")
+                                                    .value
+                                            }}
+                                        </h4>
+                                        <mat-form-field
+                                            *ngIf="!isPreview"
+                                            [style.fontSize.px]="16"
+                                            appearance="fill"
+                                            class="w-50"
+                                        >
+                                            <mat-label>{{
+                                                l("SectionTitle")
+                                            }}</mat-label>
+                                            <input
+                                                matInput
+                                                [formControl]="
+                                                    sectionControl.get('title')
+                                                "
+                                                type="text"
+                                            />
+                                        </mat-form-field>
+                                        <button
+                                            color="warn"
+                                            *ngIf="i > 0 && !isPreview"
+                                            type="button"
+                                            (click)="removeSection(i)"
+                                            mat-icon-button
+                                            aria-label="remove section"
+                                        >
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
+                                    <mat-card-content>
+                                        <questions-list
+                                            [learningOutComes]="
+                                                learningOutComes
+                                            "
+                                            (questionMoved)="
+                                                isQuestionMoved($event, i)
+                                            "
+                                            [paperFields]="paperFields"
+                                            [isPreview]="isPreview"
+                                            [isGroupQuestion]="false"
+                                            [gradeId]="
+                                                sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('gradeId').value
+                                            "
+                                            [subjectId]="
+                                                this.sectionForm
+                                                    .get('examDetailsForm')
+                                                    .get('subjectId').value
+                                            "
+                                            [isGrading]="false"
+                                            [questions]="questionsArray[i]"
+                                            (sections)="getSections($event)"
+                                            [sectionIndex]="i"
+                                            [form]="
+                                                sectionControl.get('questions')
+                                            "
+                                        >
+                                        </questions-list>
+                                        <div
+                                            *ngIf="!isPreview"
+                                            class="form-row d-felx justify-content-between"
+                                        >
+                                            <button
+                                                type="button"
+                                                mat-raised-button
+                                                color="primary"
+                                                [matMenuTriggerFor]="menu"
+                                            >
+                                                <mat-icon>add</mat-icon>
+                                                {{ l("AddNew") }}
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <button
+                                                    type="button"
+                                                    *ngFor="
+                                                        let question of questionTypes
+                                                    "
+                                                    (click)="
+                                                        addNewQuestion(
+                                                            question.value,
+                                                            i
+                                                        )
+                                                    "
+                                                    mat-menu-item
+                                                >
+                                                    {{ question.key }}
+                                                </button>
+                                                <mat-divider></mat-divider>
+                                                <button
+                                                    type="button"
+                                                    mat-menu-item
+                                                    (click)="
+                                                        importFromQuestionsBank(
+                                                            i
+                                                        )
+                                                    "
+                                                >
+                                                    {{
+                                                        l("ImportQuestionBank")
+                                                    }}
+                                                </button>
+                                                <mat-divider></mat-divider>
+                                                <button
+                                                    type="button"
+                                                    mat-menu-item
+                                                    (click)="
+                                                        addNewQuestion('7', i)
+                                                    "
+                                                >
+                                                    {{ l("Section") }}
+                                                </button>
+                                            </mat-menu>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+
+                            <div
+                                *ngIf="
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('examType') &&
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('examType').value === 3
+                                "
+                            >
+                                <app-uploader
+                                    [uploaderId]="'file'"
+                                    [filesType]="filesType"
+                                    [data]="uploaderAttachmentList"
+                                    (list)="getListOfAttachment($event)"
+                                    [multiple]="true"
+                                    [showUpload]="true"
+                                    [assignment]="true"
+                                ></app-uploader>
+                            </div>
+                            <div
+                                *ngIf="
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('examType') &&
+                                    sectionForm
+                                        .get('examDetailsForm')
+                                        .get('examType').value === 4 && index === 2
+                                "
+                            >
+                                <jusoor-experiment
+                                    [class]="
+                                        this.sectionForm
+                                            .get('examineesForm')
+                                            .get('classes')
+                                    "
+                                    (experimentSelected)="
+                                        onExperimentSelected($event)
+                                    "
+                                ></jusoor-experiment>
+                            </div>
+                        </form>
+                    </mat-step>
+                </div>
+            </mat-horizontal-stepper>
+
+            <div *ngIf="!isPreview" class="card-footer">
+                <button
+                    *ngIf="index > 0"
+                    style="margin: 0 4px"
+                    (click)="stepper.previous()"
+                    mat-button
+                    mat-raised-button
+                >
+                    {{ l("Back") }}
+                </button>
+                <button
+                    *ngIf="index < 2"
+                    (click)="stepper.next()"
+                    mat-raised-button
+                >
+                    {{ l("Next") }}
+                </button>
+                <button
+                    *ngIf="index === 2"
+                    [disabled]="
+                        sectionForm.invalid ||
+                        experimentValidate ||
+                        autoSaveLoading ||
+                        exitLoading ||
+                        saveLoading
+                    "
+                    (click)="onSubmit(false)"
+                    style="margin: 0 4px"
+                    mat-raised-button
+                    color="primary"
+                >
+                    <mat-icon>save</mat-icon>
+                    {{ l("Save") }}
+                    <mat-icon *ngIf="saveLoading || autoSaveLoading">
+                        <mat-spinner
+                            color="primary"
+                            diameter="20"
+                        ></mat-spinner>
+                    </mat-icon>
+                </button>
+                <button
+                    *ngIf="index === 2"
+                    [disabled]="
+                        !sectionForm.valid ||
+                        experimentValidate ||
+                        autoSaveLoading ||
+                        saveLoading ||
+                        exitLoading
+                    "
+                    (click)="onSubmit(true)"
+                    mat-raised-button
+                    color="primary"
+                >
+                    <mat-icon>exit_to_app</mat-icon>
+                    {{ l("SaveAndExit") }}
+                    <mat-icon *ngIf="exitLoading">
+                        <mat-spinner
+                            color="primary"
+                            diameter="20"
+                        ></mat-spinner>
+                    </mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
